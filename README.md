@@ -99,7 +99,7 @@ Scanning public networks without permission is **illegal** in many countries.
 ## ☕ Buy Me a Coffee
 If you like this project and want to support me:
 
-[![Buy Me a Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/zainpew)
+[![Buy Me a Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://saweria.co/zainpewpewpew)
 
 ---
 
