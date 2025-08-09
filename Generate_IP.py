@@ -59,7 +59,6 @@ def generate_ip_files(prefix, max_size_mb=8):
         current_file.write(formatted_ip)
         current_size += line_size
 
-        # Print fake hacker-style animation every N lines
         if printed % 100000 == 0:
             print(f"{G}[+] Injecting → {formatted_ip.strip()}{W}")
         printed += 1
