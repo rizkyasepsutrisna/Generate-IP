@@ -1,26 +1,26 @@
 # IP Range Scanner
 
-Proyek ini terdiri dari dua script Python untuk:
+This project consists of two Python scripts:
 
-1. **Generate_IP** – Membuat daftar IP dalam range tertentu dan menyimpannya ke file `.txt` per batch (max 8 MB per file).
-2. **Scanning** – Melakukan scanning ke setiap IP (HTTP) untuk mengecek apakah responnya memiliki **status code 200**.
+1. **Generate_IP** – Generates a list of IP addresses in a given range and saves them to `.txt` files per batch (max 8 MB each).
+2. **Scanning** – Scans each IP (HTTP) to check if the response has a **status code 200**.
 
-## 📂 Struktur Proyek
+## 📂 Project Structure
 
 ```
 .
-├── Generate_IP.py        # Script untuk membuat daftar IP
-├── Scanning.py           # Script untuk scanning IP
-├── requirements.txt      # Daftar dependensi
-├── README.md             # Dokumentasi proyek
-└── ip_chunks_xx/         # Folder output hasil Generate_IP (xx = prefix IP)
+├── Generate_IP.py        # Script to generate IP addresses
+├── Scanning.py           # Script to scan IP addresses
+├── requirements.txt      # Dependency list
+├── README.md             # Project documentation
+└── ip_chunks_xx/         # Output folder from Generate_IP (xx = IP prefix)
 ```
 
 ---
 
-## 📦 Instalasi
+## 📦 Installation
 
-Pastikan Python 3.8+ sudah terpasang, lalu install dependensi:
+Make sure Python 3.8+ is installed, then install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -34,25 +34,25 @@ colorama
 
 ---
 
-## 🚀 Cara Penggunaan
+## 🚀 Usage
 
-### 1. Generate Daftar IP
-Jalankan script `Generate_IP` untuk membuat file daftar IP berdasarkan prefix yang diinput.
+### 1. Generate IP List
+Run `Generate_IP.py` to create files containing IP addresses based on the prefix you provide.
 
 ```bash
 python Generate_IP.py
 ```
 
-**Contoh input:**
+**Example input:**
 ```
 Enter IP prefix (1–223): 18
 ```
 
-Hasil akan tersimpan di folder:
+The result will be saved in a folder:
 ```
 ip_chunks_18/
 ```
-Isi file akan berupa daftar IP seperti:
+The files inside will contain lines like:
 ```
 http://18.0.0.1:80
 http://18.0.0.2:80
@@ -61,40 +61,47 @@ http://18.0.0.2:80
 
 ---
 
-### 2. Scanning IP
-Setelah daftar IP dibuat, jalankan script `Scanning.py` untuk mengecek status HTTP (200 OK).
+### 2. Scan IPs
+After generating the IP list, run `Scanning.py` to check for HTTP status code 200.
 
 ```bash
 python Scanning.py
 ```
 
-**Contoh input:**
+**Example input:**
 ```
-📂 Masukkan nama folder IP (contoh: ip_chunks_18): ip_chunks_18
+📂 Enter IP folder name (e.g., ip_chunks_18): ip_chunks_18
 ```
 
-Script akan:
-- Menampilkan status setiap IP (`200 OK`, kode lain, atau error)
-- Menyimpan IP dengan **status code 200** ke `success.txt`
+The script will:
+- Show the status of each IP (`200 OK`, other codes, or errors)
+- Save IPs with **status code 200** to `success.txt`
 
 ---
 
-## ⚙️ Pengaturan
-Beberapa variabel penting di `Scanning.py`:
-- `BATCH_SIZE` → Jumlah IP per batch (default 10,000)
-- Timeout request: 5 detik
-- Hanya menyimpan IP dengan status **200 OK**
+## ⚙️ Configuration
+Key variables in `Scanning.py`:
+- `BATCH_SIZE` → Number of IPs per batch (default 10,000)
+- Request timeout: 5 seconds
+- Only IPs with status **200 OK** are saved
 
 ---
 
 ## ⚠️ Disclaimer
-Script ini hanya untuk **keperluan legal**, seperti:
-- Pengujian jaringan internal
-- Audit keamanan sistem yang Anda miliki atau mendapat izin resmi
+This script is for **legal purposes only**, such as:
+- Internal network testing
+- Security auditing of systems you own or have permission to test
 
-Penggunaan untuk scanning jaringan publik tanpa izin **melanggar hukum** di banyak negara.
+Scanning public networks without permission is **illegal** in many countries.
 
 ---
 
-## 📜 Lisensi
+## ☕ Buy Me a Coffee
+If you like this project and want to support me:
+
+[![Buy Me a Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/zainpew)
+
+---
+
+## 📜 License
 MIT License © 2025
