@@ -5,9 +5,8 @@ from colorama import Fore, Style, init
 
 init(autoreset=True)
 
-BATCH_SIZE = 10000  # Banyak IP per batch
+BATCH_SIZE = 10000 
 
-# Cek satu IP
 async def check_url(session, url):
     try:
         async with session.get(url, timeout=5, ssl=False) as resp:
@@ -24,24 +23,22 @@ async def check_url(session, url):
         print(Fore.YELLOW + f"[UNKNOWN ERROR] {url} -> {e}")
     return None
 
-# Ambil semua IP dari file di folder
 def load_urls_from_folder(folder_path):
     urls = []
     for file_name in os.listdir(folder_path):
         if file_name.endswith(".txt"):
             with open(os.path.join(folder_path, file_name), "r") as f:
                 for line in f:
-                    url = line.strip()  # Tetap http, tidak diubah ke https
+                    url = line.strip() 
                     if url:
                         urls.append(url)
     return urls
 
-# Simpan IP sukses ke file
 def save_success(urls, output_file="success.txt"):
     with open(output_file, "a") as f:
         for url in urls:
             f.write(url + "\n")
-    print(Fore.CYAN + f"\n✅ Batch selesai → {len(urls)} IP berhasil → ditulis ke {output_file}")
+    print(Fore.CYAN + f"\n✅ Batch Finish → {len(urls)} IP Success → write to {output_file}")
 
 # Proses satu batch IP
 async def process_batch(session, urls):
@@ -55,9 +52,9 @@ async def process_batch(session, urls):
 
 # Main async executor
 async def main_async(folder_path):
-    print(Fore.YELLOW + f"\n🚀 Memuat semua IP dari folder: {folder_path}...")
+    print(Fore.YELLOW + f"\n🚀 Load all IPs from folder: {folder_path}...")
     urls = load_urls_from_folder(folder_path)
-    print(Fore.YELLOW + f"🔢 Total target: {len(urls)} IP\n")
+    print(Fore.YELLOW + f"🔢 Target Results: {len(urls)} IP\n")
 
     connector = aiohttp.TCPConnector(limit=500)
 
@@ -65,7 +62,7 @@ async def main_async(folder_path):
         total = len(urls)
         for i in range(0, total, BATCH_SIZE):
             batch = urls[i:i + BATCH_SIZE]
-            print(Fore.CYAN + f"\n🧪 Memproses batch {i // BATCH_SIZE + 1} ({len(batch)} IP)...")
+            print(Fore.CYAN + f"\n🧪 Batch processing {i // BATCH_SIZE + 1} ({len(batch)} IP)...")
             success = await process_batch(session, batch)
             save_success(success)
 
@@ -80,9 +77,9 @@ if __name__ == "__main__":
 ██║ ╚████║╚██████╔╝██║  ██║╚██████╗██║  ██╗███████╗███████║
 ╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝
 """)
-    folder = input(Fore.CYAN + "📂 Masukkan nama folder IP (contoh: ip_chunks_18): ").strip()
+    folder = input(Fore.CYAN + "📂 Enter the IP folder name (example: ip_chunks_18): ").strip()
 
     if not os.path.exists(folder):
-        print(Fore.RED + "❌ Folder tidak ditemukan.")
+        print(Fore.RED + "❌ Folder not found.")
     else:
         asyncio.run(main_async(folder))
